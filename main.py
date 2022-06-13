@@ -132,8 +132,51 @@ def google_search(text):
     
     return(result)
 
-
-
+@app.get("/Books")
+def Books(author: str = 'H.P. Lovecraft/Stephen King/J.K. Rowling/Arthur Conan Doyle/J. R. R. Tolkien/Andrzej Sapkowski'):
+    Book_list = {'Necronomicon': 'H.P. Lovecraft',
+             'The Call of Cthulhu and Other Weird Stories': 'H.P. Lovecraft',
+             'Hearts in Atlantis': 'Stephen King',
+             'Dreamcatcher': 'Stephen King',
+             'Salem\'s Lot': 'Stephen King',
+             'It': 'Stephen King',
+             'Harry Potter and the Philosopher\'s Stone': 'J.K. Rowling',
+             'Harry Potter and the Chamber of Secrets': 'J.K. Rowling',
+             'Harry Potter and the Prisoner of Azkaban': 'J.K. Rowling',
+             'Harry Potter and the Goblet of Fire': 'J.K. Rowling',
+             'Harry Potter and the Order of the Phoenix': 'J.K. Rowling',
+             'Harry Potter and the Half-Blood Prince': 'J.K. Rowling',
+             'Harry Potter and the Deathly Hallows': 'J.K. Rowling',
+             'Harry Potter and the Cursed Child, Parts I and II': 'J.K. Rowling',
+             'The Hound of the Baskervilles': 'Arthur Conan Doyle',
+             'The Adventures of Sherlock Holmes': 'Arthur Conan Doyle',
+             'A Study in Scarlet': 'Arthur Conan Doyle',
+             'The Sign of Four': 'Arthur Conan Doyle',
+             'The Valley of Fear': 'Arthur Conan Doyle',
+             'The Return of Sherlock Holmes': 'Arthur Conan Doyle',
+             'The Hobbit': 'J. R. R. Tolkien',
+             'Fellowship of the Ring': 'J. R. R. Tolkien',
+             'The Two Towers': 'J. R. R. Tolkien',
+             'The Silmarillion': 'J. R. R. Tolkien',
+             'Return of the King': 'J. R. R. Tolkien',
+             'Unfinished Tales': 'J. R. R. Tolkien',
+             'Blood of Elves': 'Andrzej Sapkowski',
+             'Sword of Destiny': 'Andrzej Sapkowski',
+             'The Lady of the Lake': 'Andrzej Sapkowski',
+             'The Time of Contempt': 'Andrzej Sapkowski',
+             'Season of Storms': 'Andrzej Sapkowski',
+             'The Tower Of The Swallow': 'Andrzej Sapkowski',
+             'Baptism of Fire': 'Andrzej Sapkowski'}
+    key_list = list(Book_list.keys())
+    val_list = list(Book_list.values())
+    index_list = []
+    for i in range(len(Book_list)):
+        if val_list[i] == author:
+            index_list.append(i)
+    ans = []
+    for i in range(len(index_list)):
+        ans.append(key_list[index_list[i]])
+    return ans
 
 if __name__ == '__main__':
    uvicorn.run(app, host="0.0.0.0", port=80, debug=True) 
